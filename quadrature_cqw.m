@@ -1,6 +1,6 @@
 function [X,W,n0,Q1,Q2s]=quadrature_cqw(d,tol,T,dt,B,RK)
 Qmax = 200;
-
+a = 1;
 % weights 0, \dots, n_0 computed directly and n_0+1 etc use quadrature
 
 
