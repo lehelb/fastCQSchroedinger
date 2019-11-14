@@ -2,7 +2,7 @@
 Codes accompanying the publication:
 
 Fast and oblivious algorithms for Schroedinger equation with concentrated potentials
-by Lehel Banjai and Maria Lopez Fernandez
+by Lehel Banjai and Maria Lopez-Fernandez
 
 downloadable from https://arxiv.org/abs/1908.01292.
 
