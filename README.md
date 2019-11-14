@@ -1,8 +1,10 @@
 # Fast-CQ-Schroedinger
-Fast and oblivious algorithms for Schroedinger equation with concentrated potentials arXiv:1908.01292
+Codes accompanying the publication:
+
+Fast and oblivious algorithms for Schroedinger equation with concentrated potentials
 by Lehel Banjai and Maria Lopez Fernandez
 
-The codes accompanying the above publication. 
+downloadable from https://arxiv.org/abs/1908.01292.
 
 The folder fast_schroedinger_codes/ contains the main codes required for the fast and oblivious algorithm. 
 
