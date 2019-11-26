@@ -20,7 +20,7 @@ fcorr=@(t,d) exp(1i*pi/4)/(2*sqrt(pi))*(2*sqrt(t).*exp(1i*d^2./(4*t)) + ...
     exp(1i*pi*3/4)*sqrt(pi)*d*erfz(exp(1i*pi*3/4)*d./sqrt(4*t)) - exp(-1i*pi/4)*sqrt(pi)*d);
 fcorrd0=@(t) exp(1i*pi/4)*sqrt(t/pi);
 
-RK = 2;
+RK = 1;
 [A,b,c,intflag] = RKdata(RK);
 s = length(b);
 
@@ -44,6 +44,7 @@ tvec=zeros(s,N+1);
 [solminusa,solplusa]=freesol(tvec(:,1),a,lf,le,Nf,Ne,alfa,beta);
 iniminusa=solminusa(end);
 iniplusa=solplusa(end);
+
 q1(:,1)=solminusa;  q2(:,1)=solplusa;
 Qhist=zeros(2*s,NQ);
 po=2*sigma; 
@@ -110,7 +111,7 @@ for n=0:N
         niter=niter+1;
         max_err = max(err, max_err);
     end
-    niterv(n+1)=niter;    
+    niterv(n+1)=niter;        
     waitbar(n/N,h);
 end
 close(h)

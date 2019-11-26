@@ -1,7 +1,7 @@
 # Fast-CQ-Schroedinger
 Codes accompanying the publication:
 
-Fast and oblivious algorithms for Schrödinger equation with concentrated potentials
+Numerical approximation of the Schrödinger equation with concentrated potentials
 by Lehel Banjai and María López-Fernández
 
 downloadable from https://arxiv.org/abs/1908.01292.
