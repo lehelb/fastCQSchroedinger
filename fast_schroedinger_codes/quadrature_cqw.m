@@ -8,6 +8,10 @@ if (RK == 1) %BDF1
     b = .5; nu = -log(1-b)/b; Cq = exp(nu*b); %From the paper ffde
     rn = @(z) 1./abs(1-z); qn = @(z) 1./abs(1-z);
 else %currently just 2-stage Radau    
+    if (RK > 2)
+        disp(['Choice of parameters for 2-stage Radau IIA used. Might not be ' ...
+              'optimal for the 3-stage version']);
+    end
     b = 1; nu = 1.0735; Cq = 1.4733; %From the paper ffde   
     rn = @(z) abs((2*z+6)./(z.^2-4*z+6)); qn = @(z) sqrt((9/2)^2+abs(3/2-z).^2)./abs(z.^2-4*z+6); 
 end
