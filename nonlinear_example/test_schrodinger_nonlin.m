@@ -20,7 +20,7 @@ fcorr=@(t,d) exp(1i*pi/4)/(2*sqrt(pi))*(2*sqrt(t).*exp(1i*d^2./(4*t)) + ...
     exp(1i*pi*3/4)*sqrt(pi)*d*erfz(exp(1i*pi*3/4)*d./sqrt(4*t)) - exp(-1i*pi/4)*sqrt(pi)*d);
 fcorrd0=@(t) exp(1i*pi/4)*sqrt(t/pi);
 
-RK = 1;
+RK = 2;
 [A,b,c,intflag] = RKdata(RK);
 s = length(b);
 
