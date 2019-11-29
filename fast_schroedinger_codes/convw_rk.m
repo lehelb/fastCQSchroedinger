@@ -4,16 +4,7 @@ function [omega,omega0] = convw_rk(N,dt,RK,K)
 %RK = (1 RadauIIA1) (2 RadauIIA2) (3 RadauIIA3) (4 LobattoIIIC6)
 %2017 Maria Lopez-Fernandez
 
-if (RK==1)%BDF1
-    s = 1;    
-    intflag ='RadauIIA1';    
-elseif (RK==2)%Radau IIA of order 3 stage order 2    
-    s = 2;    
-    intflag ='RadauIIA3';
-elseif (RK==3)%Radau IIA order 5, stage order 3    
-    s = 3;    
-    intflag ='RadauIIA5';
-end
+s = RK; %number of stages
 
 Nmax = 3*N;                       % Nmax Power of 2 bigger than 2*N;
 Nmax = 2^ceil(log(Nmax)/log(2));
@@ -24,10 +15,9 @@ xi = rho*exp(1i*2*pi*kv/Nmax);
 
 omegalong = zeros(s,s,Nmax);
 %omega = zeros(s,s,N);
-
 for ll=1:Nmax
     xx = xi(ll);
-    DM = eval(sprintf('Delta%s(xx)',intflag));
+    DM = deltaRadauIIA(xx,RK);
     [V,D] = eig(DM);
     temp = K(diag(D/dt));    
     omegalong(:,:,ll) = V*diag(temp)*inv(V); %K(DM/dt); %LT of the convolution kernel evaluated at \Delta(\zeta/dt).
@@ -44,7 +34,7 @@ for kk =1:s
         omega(kk,jj,:)=omegaV/Nmax;
     end
 end
-DO = eval(sprintf('Delta%s(0)',intflag));
+DO = deltaRadauIIA(0,RK);
 [V,D] = eig(DO);
 temp = K(diag(D/dt));
 omega0 = V*diag(temp)*inv(V); %K(DM/dt); %LT of the convolution kernel evaluated at \Delta(\zeta/dt).

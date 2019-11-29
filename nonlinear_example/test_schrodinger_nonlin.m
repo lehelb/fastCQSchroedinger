@@ -21,7 +21,7 @@ fcorr=@(t,d) exp(1i*pi/4)/(2*sqrt(pi))*(2*sqrt(t).*exp(1i*d^2./(4*t)) + ...
 fcorrd0=@(t) exp(1i*pi/4)*sqrt(t/pi);
 
 RK = 2;
-[A,b,c,intflag] = RKdata(RK);
+[A,b,c] = RKdata(RK);
 s = length(b);
 
 %The same quadrature can be used for every 0<= d <=2.
@@ -31,10 +31,10 @@ B = 3; tol=1e-6;
 NQ=length(Xq);
 %%
 %Prepare rs, Ss and values of G
-r=eval(sprintf('r_%s(-dt*Xq)',intflag));
+r = rRadauIIA(-dt*Xq,RK);
 S=zeros(NQ,s,s);
 for ll=1:NQ
-    S(ll,:,:)=eval(sprintf('S_%s(-dt*Xq(ll))',intflag));
+    S(ll,:,:) = SRadauIIA(-dt*Xq(ll),RK);
 end
 Gd0=G(Xq,0);
 Gd2=G(Xq,d);

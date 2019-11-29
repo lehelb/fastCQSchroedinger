@@ -13,7 +13,7 @@ G = @(z,d) 1i*exp(1i*pi/4)*z.^(-1/2).*cosh(d*exp(1i*pi/4)*sqrt(z));
 x1=-1; x2=1; omega=1;
 
 RK = 2;
-[A,b,c,intflag] = RKdata(RK);
+[A,b,c] = RKdata(RK);
 s = length(b);
 
 T = 40;
@@ -25,10 +25,10 @@ tol=1e-6;
 [Xq,Wq,n0,Q1,Q2s]=quadrature_cqw(d,tol,T,dt,B,RK);
 NQ=length(Xq);
 %Prepare rs, Ss and values of G
-r=eval(sprintf('r_%s(-dt*Xq)',intflag));
+r = rRadauIIA(-dt*Xq,RK);
 S=zeros(NQ,s,s);
 for ll=1:NQ
-    S(ll,:,:)=eval(sprintf('S_%s(-dt*Xq(ll))',intflag));
+    S(ll,:,:) = SRadauIIA(-dt*Xq(ll),RK);
 end
 Gd0=G(Xq,0);
 Gd2=G(Xq,2);
